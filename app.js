@@ -3,48 +3,42 @@
 //let frutas = ["Manzana", "Banana"];
  
 
-let amigos = [];
-let nom ;
-let campo;
-function agregarAmigo(){
- campo = document.getElementById("amigo");
- nom = campo.value;
-if(nom == "")
+let amigos = [];                 //Declaro el array
+
+function agregarAmigo(){                      // Cuando hago click llamo a esta funcion     
+ let campo = document.getElementById("amigo");  // Selecciono el campo del cual quiero obtener el contenido
+ let amigo = campo.value.trim();                      // Obtengo y limpio el valor 
+ 
+if(amigo === "")
     {
     alert("Por favor, inserte un nombre.");
     }
 else
 {
-    // funcion actualizarListamigos
-    amigos.push(nom);
+    amigos.push(amigo);                        // Envio el amigo al Array
     
+    campo.value = "";                         // Vacio el campo 
     
 
-    /* let lista = document.getElementById("listaAmigos");
-    let li = document.createElement("li");
-    li.textContent = nom;
-
-    lista.appendChild(li); */
-
-    //campo.value = "";
+    actualizarListaAmigos();
     //console.log(amigos);
-    let lista = document.getElementById("listaAmigos");
-    lista.innerHTML = "";
     
+}
+}
+function actualizarListaAmigos(){                             // Actualizo la lista
 
+    let lista = document.getElementById("listaAmigos");       // selecionamos la lista donde vamos a poner a los amigos
+    lista.innerHTML = "";                                     // la vaciamos antes de poner nuevos amigos
 
-for (let i= 0; i < amigos.length; i++) {
-    
+    for (let i = 0; i < amigos.length; i++) {
+        let li = document.createElement("li");               // por cada  amigo creamos un contenido
+        li.textContent = amigos[i];                          // el amigo va a el contenido
+        lista.appendChild(li);                                // el contenido se agrega a la lista
+        
+    }
+    /*amigos.forEach(amigo => {
     let li = document.createElement("li");
-    li.textContent = nom;
-    
+    li.textContent = amigo;
     lista.appendChild(li);
-
-    
-    //campo.value = "";
-    //campo.innerHTML = "";
-    
+    });*/
 }
-}
-}
-campo.value = "";
